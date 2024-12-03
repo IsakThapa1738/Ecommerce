@@ -1,0 +1,71 @@
+﻿@model ProductDTO
+@{
+    Layout = "_AdminLayout";
+}
+
+<div style="width:50%">
+    <h2>Add Product</h2>
+    <a asp-action="Index" asp-controller="Product" class="btn btn-primary">Back</a>
+
+    @if (TempData["errorMessage"] != null)
+    {
+        <div class="alert alert-danger">@TempData["errorMessage"]</div>
+    }
+    @if (TempData["successMessage"] != null)
+    {
+        <div class="alert alert-success">@TempData["successMessage"]</div>
+    }
+
+    <form asp-action="AddProduct" enctype="multipart/form-data">
+        <div class="my-2">
+            <label>Product*</label>
+            <input type="text" class="form-control" asp-for="Name" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+
+        <div class="my-2">
+            <label>Category*</label>
+            <select class="form-control" asp-for="CategoryId" asp-items="Model.CategoryList">
+                <option value="">Select Category</option>
+            </select>
+            <span asp-validation-for="CategoryId" class="text-danger"></span>
+        </div>
+
+        <div class="my-2">
+            <label>Price*</label>
+            <input type="number" class="form-control" asp-for="Price" />
+            <span asp-validation-for="Price" class="text-danger"></span>
+        </div>
+        <div class="my-2">
+            <label>Description</label>
+            <input type="text" class="form-control" asp-for="Description" />
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+
+        <div class="my-2">
+            <label>Image</label>
+            <input type="file" class="form-control" asp-for="ImageFile" onchange="previewImage(event)" />
+            <span asp-validation-for="ImageFile" class="text-danger"></span>
+            <img id="imagePreview" style="max-width: 200px; max-height: 200px; display: none;" />
+        </div>
+
+        <div class="my-2">
+            <button type="submit" class="btn btn-info">Add</button>
+        </div>
+    </form>
+</div>
+
+<script>
+    function previewImage(event) {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                const img = document.getElementById('imagePreview');
+                img.src = e.target.result;
+                img.style.display = 'block';
+            };
+            reader.readAsDataURL(file);
+        }
+    }
+</script>

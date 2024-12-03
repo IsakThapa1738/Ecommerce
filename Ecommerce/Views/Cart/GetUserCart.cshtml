@@ -1,0 +1,76 @@
+﻿@model Cart
+
+@{
+    ViewData["Title"] = "My Cart";
+}
+<head>
+    <link href="~/css/GetUsercart.css" rel="stylesheet" />
+</head>
+
+<div class="container mt-5">
+    @if (Model != null && Model.CartItems != null && Model.CartItems.Count > 0)
+    {
+        <h1 class="text-center mb-4">My Cart</h1>
+
+        <!-- Cart Table -->
+        <table class="table table-bordered table-hover text-center align-middle">
+            <thead class="table-primary">
+                <tr>
+                    <th>Product</th>
+                    <th>Image</th>
+                    <th>Category</th>
+                    <th>Unit Price (NPR)</th>
+                    <th>Quantity</th>
+                    <th>Total Price (NPR)</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.CartItems)
+                {
+                    <tr>
+                        <td>@item.Product.Name</td>
+                        <td>
+                            @if (string.IsNullOrEmpty(item.Product.Image))
+                            {
+                                <img src="/images/NoImage.png" alt="No Image" class="img-fluid" style="width: 80px; height: 100px;" />
+                            }
+                            else
+                            {
+                                <img src="/images/@item.Product.Image" alt="@item.Product.Name" class="img-fluid" style="width: 80px; height: 100px;" />
+                            }
+                        </td>
+                        <td>@item.Product.Category.Name</td>
+                        <td>@item.Product.Price</td>
+                        <td>
+                            @item.Quantity
+                        </td>
+                        <td>@(item.Product.Price * item.Quantity)</td>
+                        <td>
+                            <a class="btn btn-success btn-sm me-1" href="/Cart/AddItem?productId=@item.ProductId&&redirect=1">+</a>
+                            <a class="btn btn-danger btn-sm" href="/cart/removeitem?productid=@item.ProductId">-</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <!-- Total Price -->
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h5 class="fw-bold">Total (NPR):</h5>
+            <h5 class="text-success fw-bold">@(Model.CartItems.Select(item => item.Product.Price * item.Quantity).Sum())</h5>
+        </div>
+
+        <!-- Checkout Button -->
+        <div class="text-end">
+            <a class="btn btn-primary btn-lg px-4" href="/Cart/Checkout">Proceed to Checkout</a>
+        </div>
+    }
+    else
+    {
+        <div class="text-center">
+            <h3 class="text-muted">Your cart is empty</h3>
+            <a class="btn btn-primary mt-3" href="/Home/Index">Start Shopping</a>
+        </div>
+    }
+</div>

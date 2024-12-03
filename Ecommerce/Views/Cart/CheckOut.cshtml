@@ -1,0 +1,52 @@
+﻿@model CheckoutModel
+@{
+    ViewData["Title"] = "Checkout";
+}
+<head>
+    <link href="~/css/Checkout.css" rel="stylesheet" />
+</head>
+
+<div class="checkout-container">
+    <h2>Checkout</h2>
+    <form asp-action="Checkout" class="checkout-form">
+        <div class="form-group">
+            <label asp-for="Name">Name*</label>
+            <input type="text" class="form-control" asp-for="Name" placeholder="Enter your name" />
+            <span asp-validation-for="Name" class="validation-error"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Email">Email*</label>
+            <input type="email" class="form-control" asp-for="Email" placeholder="Enter your email" />
+            <span asp-validation-for="Email" class="validation-error"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="MobileNumber">Mobile Number*</label>
+            <input type="text" class="form-control" asp-for="MobileNumber" placeholder="Enter your mobile number" />
+            <span asp-validation-for="MobileNumber" class="validation-error"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Address">Address*</label>
+            <textarea class="form-control" asp-for="Address" rows="4" placeholder="Enter your address"></textarea>
+            <span asp-validation-for="Address" class="validation-error"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="PaymentMethod">Payment Method*</label>
+            <select asp-for="PaymentMethod" class="form-control">
+                <option value="">Select Payment Method</option>
+                @foreach (var method in Enum.GetValues(typeof(Ecommerce.Constants.PaymentMethods)))
+                {
+                    <option value="@method.ToString()">@method.ToString()</option>
+                }
+            </select>
+            <span asp-validation-for="PaymentMethod" class="validation-error"></span>
+        </div>
+
+        <div class="form-group">
+            <button type="submit" class="btn-submit">Next</button>
+        </div>
+    </form>
+</div>

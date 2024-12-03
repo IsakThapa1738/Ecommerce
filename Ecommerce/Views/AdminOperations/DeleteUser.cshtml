@@ -1,0 +1,33 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@model IdentityUser
+
+<div class="container-fluid">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-danger">Delete User Confirmation</h6>
+        </div>
+        <div class="card-body">
+            <div class="alert alert-danger" role="alert">
+                <h4 class="alert-heading">Warning!</h4>
+                <p>Are you sure you want to delete the following user?</p>
+                <hr>
+                <p class="mb-0">
+                    <strong>Username:</strong> @Model.UserName<br />
+                    <strong>Email:</strong> @Model.Email
+                </p>
+            </div>
+
+            <form asp-action="DeleteUser" method="post">
+                <input type="hidden" asp-for="Id" />
+                <div class="form-group">
+                    <button type="submit" class="btn btn-danger">
+                        <i class="fas fa-trash"></i> Confirm Delete
+                    </button>
+                    <a asp-action="UserManagement" class="btn btn-secondary">
+                        <i class="fas fa-times"></i> Cancel
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
