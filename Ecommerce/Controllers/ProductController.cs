@@ -72,8 +72,8 @@ namespace Ecommerce.Controllers
                         throw new InvalidOperationException("Image file size cannot exceed 1 MB.");
                     }
 
-                    // Save the image file to wwwroot/product_images/
-                    var wwwPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "product_images");
+                    // Save the image file to wwwroot/images/
+                    var wwwPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "Images");
 
                     if (!Directory.Exists(wwwPath))
                     {
@@ -176,8 +176,8 @@ namespace Ecommerce.Controllers
                         throw new InvalidOperationException("Image file cannot exceed 1 MB.");
                     }
 
-                    // Save the image file to wwwroot/product_images/
-                    var wwwPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "product_images");
+                    // Save the image file to wwwroot/images/
+                    var wwwPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "Images");
 
                     if (!Directory.Exists(wwwPath))
                     {
@@ -211,7 +211,7 @@ namespace Ecommerce.Controllers
                 // Delete the old image if a new one is provided
                 if (!string.IsNullOrWhiteSpace(oldImage) && oldImage != productToUpdate.Image)
                 {
-                    string oldFilePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "product_images", oldImage);
+                    string oldFilePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "Images", oldImage);
                     if (System.IO.File.Exists(oldFilePath))
                     {
                         System.IO.File.Delete(oldFilePath);
@@ -245,7 +245,7 @@ namespace Ecommerce.Controllers
                     // Delete the product image
                     if (!string.IsNullOrWhiteSpace(product.Image))
                     {
-                        string imagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "product_images", product.Image);
+                        string imagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "Images", product.Image);
                         if (System.IO.File.Exists(imagePath))
                         {
                             System.IO.File.Delete(imagePath);

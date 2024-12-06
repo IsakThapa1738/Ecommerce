@@ -75,7 +75,6 @@ else
 // Configure middleware for serving static files and routing.
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
 app.UseRouting();
 
 app.UseAuthentication(); // Add authentication middleware

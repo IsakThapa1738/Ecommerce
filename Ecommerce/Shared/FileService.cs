@@ -18,7 +18,7 @@ public class FileService : IFileService
     public async Task<string> SaveFile(IFormFile file, string[] allowedExtensions)
     {
         var wwwPath = _environment.WebRootPath;
-        var path = Path.Combine(wwwPath, "product_images");
+        var path = Path.Combine(wwwPath, "Images");
         if (!Directory.Exists(path))
         {
             Directory.CreateDirectory(path);
@@ -40,14 +40,14 @@ public class FileService : IFileService
     public void DeleteFile(string fileName)
     {
         var wwwPath = _environment.WebRootPath;
-        // Set the path to 'product_images' folder
-        var fileNameWithPath = Path.Combine(wwwPath, "product_images", fileName);
+        // Set the path to 'images' folder
+        var fileNameWithPath = Path.Combine(wwwPath, "Images", fileName);
 
         // Check if the file exists, if not, throw an exception
         if (!File.Exists(fileNameWithPath))
             throw new FileNotFoundException(fileName);
 
-        // Delete the file from the 'product_images' folder
+        // Delete the file from the 'images' folder
         File.Delete(fileNameWithPath);
     }
 }

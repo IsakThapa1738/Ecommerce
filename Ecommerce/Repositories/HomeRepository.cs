@@ -35,6 +35,7 @@ namespace Ecommerce.Repositories
                                                  Name = product.Name,
                                                  CategoryId = product.CategoryId,
                                                  Price = product.Price,
+                                                 Image = product.Image,
                                                  CategoryName = category.Name,
                                                  Quantity = productWithStock == null ? 0 : productWithStock.Quantity
                                              }

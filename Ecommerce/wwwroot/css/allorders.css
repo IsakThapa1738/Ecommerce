@@ -1,0 +1,97 @@
+﻿/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    background-color: #f8f9fa;
+}
+
+.orders-container {
+    background: #ffffff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.page-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #343a40;
+}
+
+.table-responsive {
+    overflow-x: auto;
+}
+
+.styled-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 auto;
+}
+
+    .styled-table th,
+    .styled-table td {
+        text-align: center;
+        padding: 12px;
+        vertical-align: middle;
+    }
+
+    .styled-table th {
+        background-color: #343a40;
+        color: #ffffff;
+        font-weight: bold;
+    }
+
+    .styled-table tr:nth-child(even) {
+        background-color: #f8f9fa;
+    }
+
+    .styled-table tr:hover {
+        background-color: #e9ecef;
+    }
+
+.no-orders {
+    font-size: 1.2rem;
+    text-align: center;
+    color: #6c757d;
+}
+
+/* Action Buttons */
+.action-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+    .action-buttons a,
+    .action-buttons button {
+        flex-grow: 1;
+        white-space: nowrap;
+    }
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .styled-table th,
+    .styled-table td {
+        font-size: 0.9rem;
+        padding: 8px;
+    }
+
+    .action-buttons {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 576px) {
+    .page-title {
+        font-size: 1.25rem;
+    }
+
+    .styled-table th,
+    .styled-table td {
+        font-size: 0.8rem;
+    }
+
+    .action-buttons {
+        gap: 5px;
+    }
+}

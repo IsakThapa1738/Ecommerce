@@ -11,4 +11,6 @@ namespace Ecommerce.Models.DTOs
         public int CategoryId { get; set; } = 0;
 
     }
+
+    
 }

@@ -19,16 +19,22 @@ namespace Ecommerce.Controllers
 
         public async Task<IActionResult> Index(string sterm = "", int categoryId = 0)
         {
-            IEnumerable<Product> products = await _homeRepository.GetProducts(sterm, categoryId);
-            IEnumerable<Category> categories = await _homeRepository.Categories();
+            _logger.LogInformation("Index called with search term: {sterm} and categoryId: {categoryId}", sterm, categoryId);
 
-            ProductDisplayModel productModel = new ProductDisplayModel
+            var products = await _homeRepository.GetProducts(sterm, categoryId);
+            var categories = await _homeRepository.Categories();
+
+            if (!products.Any())
+            {
+                _logger.LogWarning("No products found.");
+            }
+
+            return View(new ProductDisplayModel
             {
                 Products = products,
+                
                 Categories = categories
-            };
-
-            return View(productModel);
+            });
         }
 
 
